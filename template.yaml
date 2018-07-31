@@ -114,6 +114,51 @@ Resources:
             RestApiId: !Ref api9C1850E1
     Metadata:
       StackeryName: command
+  apiDE4FDC9D:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: !Sub
+        - ${ResourceName} From Stackery Stack ${StackeryStackTagName} Environment ${StackeryEnvironmentTagName}
+        - ResourceName: interactive-component
+      StageName: !Ref StackeryEnvironmentAPIGatewayStageName
+      DefinitionBody:
+        swagger: '2.0'
+        info: {}
+        paths:
+          /:
+            get:
+              x-amazon-apigateway-integration:
+                httpMethod: POST
+                type: aws_proxy
+                uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${function217CFA26.Arn}/invocations
+              responses: {}
+      EndpointConfiguration: REGIONAL
+    Metadata:
+      StackeryName: interactive-component
+  function217CFA26:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub ${AWS::StackName}-function217CFA26
+      Description: !Sub
+        - Stackery Stack ${StackeryStackTagName} Environment ${StackeryEnvironmentTagName} Function ${ResourceName}
+        - ResourceName: interactive-component
+      CodeUri: src/function217CFA26
+      Handler: index.handler
+      Runtime: nodejs8.10
+      MemorySize: 3008
+      Timeout: 30
+      Tracing: Active
+      Policies:
+        - AWSXrayWriteOnlyAccess
+      Events:
+        apiDE4FDC9D:
+          Type: Api
+          Properties:
+            Path: /
+            Method: GET
+            RestApiId: !Ref apiDE4FDC9D
+    Metadata:
+      StackeryName: interactive-component
 Parameters:
   StackeryStackTagName:
     Type: String
