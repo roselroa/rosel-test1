@@ -25,6 +25,12 @@ Resources:
             Path: /
             Method: GET
             RestApiId: !Ref apiFE76C470
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-7e4eda34
+        SubnetIds:
+          - subnet-d2ba49fc
+          - subnet-71d1543b
     Metadata:
       StackeryName: getWelcomePage
   apiFE76C470:
