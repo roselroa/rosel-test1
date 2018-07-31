@@ -17,6 +17,7 @@ Resources:
       Tracing: Active
       Policies:
         - AWSXrayWriteOnlyAccess
+        - AmazonVPCFullAccess
       Events:
         apiFE76C470:
           Type: Api
