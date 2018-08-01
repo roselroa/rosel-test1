@@ -100,6 +100,13 @@ Resources:
       Tracing: Active
       Policies:
         - AWSXrayWriteOnlyAccess
+        - AWSLambdaENIManagementAccess
+      VpcConfig:
+        SecurityGroupIds:
+          - !Ref StackeryEnvConfigVPC_SGAsString
+        SubnetIds:
+          - !Ref StackeryEnvConfigVPC_PRIV_SUBNET_1AsString
+          - !Ref StackeryEnvConfigVPC_PRIV_SUBNET_2AsString
       Events:
         api9C1850E1:
           Type: Api
@@ -202,3 +209,6 @@ Metadata:
     StackeryEnvConfigJENKINSTOKENAsString: JENKINS_TOKEN
     StackeryEnvConfigSLACKACCESSTOKENAsString: SLACK_ACCESS_TOKEN
     StackeryEnvConfigSLACKVERIFICATIONTOKENAsString: SLACK_VERIFICATION_TOKEN
+    StackeryEnvConfigVPC_SGAsString: VPC_SG
+    StackeryEnvConfigVPC_PRIV_SUBNET_1AsString: VPC_PRIV_SUBNET_1
+    StackeryEnvConfigVPC_PRIV_SUBNET_2AsString: VPC_PRIV_SUBNET_2
