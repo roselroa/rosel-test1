@@ -105,8 +105,8 @@ Resources:
         SecurityGroupIds:
           - !Ref StackeryEnvConfigVPCSGAsString
         SubnetIds:
-          - !Ref StackeryEnvConfigVPCPRIVSUBNET1AsString
-          - !Ref StackeryEnvConfigVPCPRIVSUBNET2AsString
+          - !Ref StackeryEnvConfigVPCPRIVSUBNETAAsString
+          - !Ref StackeryEnvConfigVPCPRIVSUBNETBAsString
       Events:
         api9C1850E1:
           Type: Api
@@ -203,12 +203,12 @@ Parameters:
   StackeryEnvConfigVPCSGAsString:
     Type: AWS::SSM::Parameter::Value<String>
     Default: /Stackery/Environments/<StackeryEnvId>/Config/VPC_SG
-  StackeryEnvConfigVPCPRIVSUBNET1AsString:
+  StackeryEnvConfigVPCPRIVSUBNETAAsString:
     Type: AWS::SSM::Parameter::Value<String>
-    Default: /Stackery/Environments/<StackeryEnvId>/Config/VPC_PRIV_SUBNET_1
-  StackeryEnvConfigVPCPRIVSUBNET2AsString:
+    Default: /Stackery/Environments/<StackeryEnvId>/Config/VPC_PRIV_SUBNET_A
+  StackeryEnvConfigVPCPRIVSUBNETBAsString:
     Type: AWS::SSM::Parameter::Value<String>
-    Default: /Stackery/Environments/<StackeryEnvId>/Config/VPC_PRIV_SUBNET_2
+    Default: /Stackery/Environments/<StackeryEnvId>/Config/VPC_PRIV_SUBNET_B
 Metadata:
   StackeryErrorsTargets:
     function8E6C5467: {}
@@ -219,5 +219,5 @@ Metadata:
     StackeryEnvConfigSLACKACCESSTOKENAsString: SLACK_ACCESS_TOKEN
     StackeryEnvConfigSLACKVERIFICATIONTOKENAsString: SLACK_VERIFICATION_TOKEN
     StackeryEnvConfigVPCSGAsString: VPC_SG
-    StackeryEnvConfigVPCPRIVSUBNET1AsString: VPC_PRIV_SUBNET_1
-    StackeryEnvConfigVPCPRIVSUBNET2AsString: VPC_PRIV_SUBNET_2
+    StackeryEnvConfigVPCPRIVSUBNETAAsString: VPC_PRIV_SUBNET_A
+    StackeryEnvConfigVPCPRIVSUBNETBAsString: VPC_PRIV_SUBNET_B
