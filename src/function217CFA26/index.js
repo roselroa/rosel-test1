@@ -16,6 +16,7 @@ let dialog;
 exports.handler = function(event, context, callback) {
   console.log(event.body);
   var req = qs.parse(event.body);
+  console.log(req.response_url);
   var j_req = JSON.parse(req.payload);
   cmd = j_req.submission.title;
   var d_token = j_req.token;
