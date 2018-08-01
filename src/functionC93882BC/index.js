@@ -56,7 +56,7 @@ function send_response(url,message) {
     };
     var url_array = url.split('/');
     var temp = "/commands/";
-    var hooks = temp.concat(url_array.pop(-1),"/",url_array.pop(-2),"/",url_array.pop(-3));
+    var hooks = temp.concat(url_array[url_array.length - 3],"/",url_array[url_array.length - 2],"/",url_array[url_array.length - 1]);
     console.log(hooks);
     console.log(post_data);
     // the post options
