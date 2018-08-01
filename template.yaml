@@ -76,7 +76,7 @@ Resources:
         info: {}
         paths:
           /:
-            get:
+            post:
               x-amazon-apigateway-integration:
                 httpMethod: POST
                 type: aws_proxy
@@ -112,7 +112,7 @@ Resources:
           Type: Api
           Properties:
             Path: /
-            Method: GET
+            Method: POST
             RestApiId: !Ref api9C1850E1
       Environment:
         Variables:
@@ -135,7 +135,7 @@ Resources:
         info: {}
         paths:
           /:
-            get:
+            post:
               x-amazon-apigateway-integration:
                 httpMethod: POST
                 type: aws_proxy
@@ -171,7 +171,7 @@ Resources:
           Type: Api
           Properties:
             Path: /
-            Method: GET
+            Method: POST
             RestApiId: !Ref apiDE4FDC9D
       Environment:
         Variables:
