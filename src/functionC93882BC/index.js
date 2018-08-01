@@ -10,12 +10,13 @@ const jenkins_token = process.env['JENKINS_TOKEN'];
 const valid_cmds = ['test-build-no-param','test-build-with-param','Devx-Create'];
 let cmd;
 let trigger_id;
-let gotcha = ':shipit: Got it :ok_hand:';
-let processed = ':shipit: Requested';
+let msg_gotcha = ':shipit: Got it :ok_hand:';
+let msg_unknown = 'Unknown command :heavy_exclamation_mark:';
+let msg_denied = 'Access Denied :heavy_exclamation_mark:'
+let msg_token_invalid = 'Invalid Token';
 let dialog;
 
 exports.handler = function(event, context, callback) {
-  callback(null,create_response('ok',200));
   var users = allowed_users.replace(" ","").split(',');
   var req = qs.parse(event.body);
   console.log(event.body);
@@ -29,24 +30,24 @@ exports.handler = function(event, context, callback) {
         case 'test-build-no-param':
           dialog = test_build_no_param_dialog();
           slack_dialog(dialog,context);
-          send_response(req.response_url,gotcha);
+          callback(null,create_response(msg_gotcha,200));
           break;
         case 'test-build-with-param':
           // create dialog for parameters
           dialog = test_build_with_param_dialog();
           slack_dialog(dialog,context);
-          send_response(req.response_url,gotcha);
+          callback(null,create_response(msg_gotcha,200));
           break;
         default:
-          send_response(req.response_url,'Unknown command :heavy_exclamation_mark:');
+          callback(null,create_response(msg_unknown,200));
       }
     } else {
       // invalid user
-      send_response(req.response_url,'Access Denied :heavy_exclamation_mark:');
+      callback(null,create_response(msg_denied,200));
     }
   } else {
     // invalid token
-    callback(null,create_response('Invalid Token',401));
+    callback(null,create_response(msg_token_invalid,401));
   }
 }
 
