@@ -58,6 +58,7 @@ function send_response(url,message) {
     var temp = "/commands/";
     var hooks = temp.concat(url_array.pop(-1),"/",url_array.pop(-2),"/",url_array.pop(-3));
     console.log(hooks);
+    console.log(post_data);
     // the post options
     var post_options = {
         host: 'hooks.slack.com',
