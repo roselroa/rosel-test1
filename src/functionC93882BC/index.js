@@ -15,11 +15,11 @@ let processed = ':shipit: Requested';
 let dialog;
 
 exports.handler = function(event, context, callback) {
+  callback(null,create_response('ok',200));
   var users = allowed_users.replace(" ","").split(',');
   var req = qs.parse(event.body);
   console.log(event.body);
   console.log(req);
-  callback(null,create_response('ok',200));
   if (req.token === slack_verification_token) {
     trigger_id = req.trigger_id;
     cmd = req.text;
