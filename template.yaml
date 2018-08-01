@@ -159,6 +159,13 @@ Resources:
       Tracing: Active
       Policies:
         - AWSXrayWriteOnlyAccess
+        - AWSLambdaENIManagementAccess
+      VpcConfig:
+        SecurityGroupIds:
+          - !Ref StackeryEnvConfigVPCSGAsString
+        SubnetIds:
+          - !Ref StackeryEnvConfigVPCPRIVSUBNETAAsString
+          - !Ref StackeryEnvConfigVPCPRIVSUBNETBAsString
       Events:
         apiDE4FDC9D:
           Type: Api
