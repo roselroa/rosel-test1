@@ -20,7 +20,7 @@ exports.handler = function(event, context, callback) {
   console.log(event.body);
   console.log(req);
   if (req.token === slack_verification_token) {
-    callback(null,create_response('',200));
+    callback(null,create_response('ok',200));
     trigger_id = req.trigger_id;
     cmd = req.text;
     if (users.includes(req.user_name)) {
