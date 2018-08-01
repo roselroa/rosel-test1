@@ -25,12 +25,7 @@ Resources:
             Method: GET
             RestApiId: !Ref apiFE76C470
       Environment:
-        Variables:
-          ALLOWED_USERS: ${config.ALLOWED_USERS}
-          JENKINS_SERVER: ${config.JENKINS_SERVER}
-          JENKINS_TOKEN: ${config.JENKINS_TOKEN}
-          SLACK_ACCESS_TOKEN: ${config.SLACK_ACCESS_TOKEN}
-          SLACK_VERIFICATION_TOKEN: ${config.SLACK_VERIFICATION_TOKEN}
+        Variables: {}
     Metadata:
       StackeryName: getWelcomePage
   apiFE76C470:
