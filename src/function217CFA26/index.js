@@ -24,6 +24,7 @@ exports.handler = function(event, context, callback) {
   var jenkins_param;
   var jenkins_data;
   var jenkins_head;
+  callback(null, create_response('',200));
   if (d_token === slack_verification_token) {
     if (valid_cmds.includes(cmd)) {
       jenkins_data = {

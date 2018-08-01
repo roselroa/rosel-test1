@@ -11,12 +11,14 @@ const valid_cmds = ['test-build-no-param','test-build-with-param','Devx-Create']
 let cmd;
 let trigger_id;
 let gotcha = ':shipit: Got it :ok_hand:';
+let processed = ':shipit: Requested';
 let dialog;
 
 exports.handler = function(event, context, callback) {
   var users = allowed_users.replace(" ","").split(',');
   var req = qs.parse(event.body);
   console.log(event.body);
+  callback(null,create_response(processed,200));
   if (req.token === slack_verification_token) {
     trigger_id = req.trigger_id;
     cmd = req.text;
