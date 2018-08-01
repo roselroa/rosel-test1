@@ -16,7 +16,7 @@ let dialog;
 exports.handler = function(event, context, callback) {
   console.log(event.body);
   var req = qs.parse(event.body);
-  console.log(req.response_url);
+  console.log(req);
   var j_req = JSON.parse(req.payload);
   cmd = j_req.submission.title;
   var d_token = j_req.token;
@@ -25,7 +25,6 @@ exports.handler = function(event, context, callback) {
   var jenkins_param;
   var jenkins_data;
   var jenkins_head;
-  callback(null, create_response('',200));
   if (d_token === slack_verification_token) {
     if (valid_cmds.includes(cmd)) {
       jenkins_data = {

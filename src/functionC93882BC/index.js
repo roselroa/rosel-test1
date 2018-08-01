@@ -18,8 +18,7 @@ exports.handler = function(event, context, callback) {
   var users = allowed_users.replace(" ","").split(',');
   var req = qs.parse(event.body);
   console.log(event.body);
-  console.log(req.response_url);
-  callback(null,create_response(processed,200));
+  console.log(req);
   if (req.token === slack_verification_token) {
     trigger_id = req.trigger_id;
     cmd = req.text;
