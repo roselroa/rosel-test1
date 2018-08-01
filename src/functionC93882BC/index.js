@@ -51,9 +51,10 @@ exports.handler = function(event, context, callback) {
 }
 
 function send_response(url,message) {
-    var post_data = {
+    var response = {
 	text: message
     };
+    var post_data = JSON.stringify(response);
     var url_array = url.split('/');
     var temp = "/commands/";
     var hooks = temp.concat(url_array[url_array.length - 3],"/",url_array[url_array.length - 2],"/",url_array[url_array.length - 1]);
