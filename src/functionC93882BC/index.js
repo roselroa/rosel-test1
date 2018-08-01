@@ -19,8 +19,8 @@ exports.handler = function(event, context, callback) {
   var req = qs.parse(event.body);
   console.log(event.body);
   console.log(req);
+  callback(null,create_response('ok',200));
   if (req.token === slack_verification_token) {
-    callback(null,create_response('ok',200));
     trigger_id = req.trigger_id;
     cmd = req.text;
     if (users.includes(req.user_name)) {
