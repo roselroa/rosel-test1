@@ -159,6 +159,13 @@ Resources:
             Path: /
             Method: GET
             RestApiId: !Ref apiDE4FDC9D
+      Environment:
+        Variables:
+          ALLOWED_USERS: !Ref StackeryEnvConfigALLOWEDUSERSAsString
+          JENKINS_SERVER: !Ref StackeryEnvConfigJENKINSSERVERAsString
+          JENKINS_TOKEN: !Ref StackeryEnvConfigJENKINSTOKENAsString
+          SLACK_ACCESS_TOKEN: !Ref StackeryEnvConfigSLACKACCESSTOKENAsString
+          SLACK_VERIFICATION_TOKEN: SLACK_VERIFICATION_TOKEN
     Metadata:
       StackeryName: interactive-component
 Parameters:
