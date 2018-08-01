@@ -20,6 +20,7 @@ exports.handler = function(event, context, callback) {
   console.log(event.body);
   console.log(req);
   if (req.token === slack_verification_token) {
+    callback(null,create_response('',200));
     trigger_id = req.trigger_id;
     cmd = req.text;
     if (users.includes(req.user_name)) {
@@ -28,25 +29,59 @@ exports.handler = function(event, context, callback) {
         case 'test-build-no-param':
           dialog = test_build_no_param_dialog();
           slack_dialog(dialog,context);
-          callback(null,create_response(gotcha,200));
+          send_response(req.response_url,gotcha);
           break;
         case 'test-build-with-param':
           // create dialog for parameters
           dialog = test_build_with_param_dialog();
           slack_dialog(dialog,context);
-          callback(null,create_response(gotcha,200));
+          send_response(req.response_url,gotcha);
           break;
         default:
-          callback(null,create_response('Unknown command :heavy_exclamation_mark:',200));
+          send_response(req.response_url,'Unknown command :heavy_exclamation_mark:');
       }
     } else {
       // invalid user
-      callback(null,create_response('Access Denied :heavy_exclamation_mark:',200));
+      send_response(req.response_url,'Access Denied :heavy_exclamation_mark:');
     }
   } else {
     // invalid token
     callback(null,create_response('Invalid Token',401));
   }
+}
+
+function send_response(url,message) {
+    var post_data = {
+	text: message
+    };
+    var url_array = url.split('/');
+    var hooks = concat("/commands/",url_array[url_array.length-3],"/",url_array[url_array.length-2],"/",url_array[url_array.length-1]);
+    // the post options
+    var post_options = {
+        host: 'hooks.slack.com',
+        port: '443',
+        path: hooks,
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/application/json',
+            'Content-Length': Buffer.byteLength(post_data)
+        }
+    };
+    // Set up the request
+    var post_req = https.request(post_options, function(res) {
+        res.setEncoding('utf8');
+        res.on('data', function (chunk) {
+            console.log('Response: ' + chunk);
+            context.succeed();
+        });
+        res.on('error', function (e) {
+            console.log("Got error: " + e.message);
+            context.done(null, 'FAILURE');
+        });
+    });
+    // post the data
+    post_req.write(post_data);
+    post_req.end();
 }
 
 function create_response(message,code) {
