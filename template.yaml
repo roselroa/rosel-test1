@@ -165,7 +165,7 @@ Resources:
           JENKINS_SERVER: !Ref StackeryEnvConfigJENKINSSERVERAsString
           JENKINS_TOKEN: !Ref StackeryEnvConfigJENKINSTOKENAsString
           SLACK_ACCESS_TOKEN: !Ref StackeryEnvConfigSLACKACCESSTOKENAsString
-          SLACK_VERIFICATION_TOKEN: SLACK_VERIFICATION_TOKEN
+          SLACK_VERIFICATION_TOKEN: !Ref StackeryEnvConfigSLACKVERIFICATIONTOKENAsString
     Metadata:
       StackeryName: interactive-component
 Parameters:
