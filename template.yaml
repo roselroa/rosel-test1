@@ -103,10 +103,10 @@ Resources:
         - AWSLambdaENIManagementAccess
       VpcConfig:
         SecurityGroupIds:
-          - !Ref StackeryEnvConfigVPC_SGAsString
+          - !Ref StackeryEnvConfigVPCSGAsString
         SubnetIds:
-          - !Ref StackeryEnvConfigVPC_PRIV_SUBNET_1AsString
-          - !Ref StackeryEnvConfigVPC_PRIV_SUBNET_2AsString
+          - !Ref StackeryEnvConfigVPCPRIVSUBNET1AsString
+          - !Ref StackeryEnvConfigVPCPRIVSUBNET2AsString
       Events:
         api9C1850E1:
           Type: Api
@@ -200,6 +200,15 @@ Parameters:
   StackeryEnvConfigSLACKVERIFICATIONTOKENAsString:
     Type: AWS::SSM::Parameter::Value<String>
     Default: /Stackery/Environments/<StackeryEnvId>/Config/SLACK_VERIFICATION_TOKEN
+  StackeryEnvConfigVPCSGAsString:
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /Stackery/Environments/<StackeryEnvId>/Config/VPC_SG
+  StackeryEnvConfigVPCPRIVSUBNET1AsString:
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /Stackery/Environments/<StackeryEnvId>/Config/VPC_PRIV_SUBNET_1
+  StackeryEnvConfigVPCPRIVSUBNET2AsString:
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /Stackery/Environments/<StackeryEnvId>/Config/VPC_PRIV_SUBNET_2
 Metadata:
   StackeryErrorsTargets:
     function8E6C5467: {}
@@ -209,6 +218,6 @@ Metadata:
     StackeryEnvConfigJENKINSTOKENAsString: JENKINS_TOKEN
     StackeryEnvConfigSLACKACCESSTOKENAsString: SLACK_ACCESS_TOKEN
     StackeryEnvConfigSLACKVERIFICATIONTOKENAsString: SLACK_VERIFICATION_TOKEN
-    StackeryEnvConfigVPC_SGAsString: VPC_SG
-    StackeryEnvConfigVPC_PRIV_SUBNET_1AsString: VPC_PRIV_SUBNET_1
-    StackeryEnvConfigVPC_PRIV_SUBNET_2AsString: VPC_PRIV_SUBNET_2
+    StackeryEnvConfigVPCSGAsString: VPC_SG
+    StackeryEnvConfigVPCPRIVSUBNET1AsString: VPC_PRIV_SUBNET_1
+    StackeryEnvConfigVPCPRIVSUBNET2AsString: VPC_PRIV_SUBNET_2
