@@ -107,6 +107,13 @@ Resources:
             Path: /
             Method: GET
             RestApiId: !Ref api9C1850E1
+      Environment:
+        Variables:
+          ALLOWED_USERS: !Ref StackeryEnvConfigALLOWEDUSERSAsString
+          JENKINS_SERVER: !Ref StackeryEnvConfigJENKINSSERVERAsString
+          JENKINS_TOKEN: !Ref StackeryEnvConfigJENKINSTOKENAsString
+          SLACK_ACCESS_TOKEN: !Ref StackeryEnvConfigSLACKACCESSTOKENAsString
+          SLACK_VERIFICATION_TOKEN: !Ref StackeryEnvConfigSLACKVERIFICATIONTOKENAsString
     Metadata:
       StackeryName: command
   apiDE4FDC9D:
@@ -164,6 +171,27 @@ Parameters:
   StackeryEnvironmentAPIGatewayStageName:
     Type: String
     Description: Environment name used for API Gateway Stage names (injected by Stackery at deployment time)
+  StackeryEnvConfigALLOWEDUSERSAsString:
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /Stackery/Environments/<StackeryEnvId>/Config/ALLOWED_USERS
+  StackeryEnvConfigJENKINSSERVERAsString:
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /Stackery/Environments/<StackeryEnvId>/Config/JENKINS_SERVER
+  StackeryEnvConfigJENKINSTOKENAsString:
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /Stackery/Environments/<StackeryEnvId>/Config/JENKINS_TOKEN
+  StackeryEnvConfigSLACKACCESSTOKENAsString:
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /Stackery/Environments/<StackeryEnvId>/Config/SLACK_ACCESS_TOKEN
+  StackeryEnvConfigSLACKVERIFICATIONTOKENAsString:
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /Stackery/Environments/<StackeryEnvId>/Config/SLACK_VERIFICATION_TOKEN
 Metadata:
   StackeryErrorsTargets:
     function8E6C5467: {}
+  StackeryEnvConfigParameters:
+    StackeryEnvConfigALLOWEDUSERSAsString: ALLOWED_USERS
+    StackeryEnvConfigJENKINSSERVERAsString: JENKINS_SERVER
+    StackeryEnvConfigJENKINSTOKENAsString: JENKINS_TOKEN
+    StackeryEnvConfigSLACKACCESSTOKENAsString: SLACK_ACCESS_TOKEN
+    StackeryEnvConfigSLACKVERIFICATIONTOKENAsString: SLACK_VERIFICATION_TOKEN
