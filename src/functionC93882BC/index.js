@@ -92,7 +92,7 @@ function create_response(message,code) {
     var response = {
         statusCode: code,
         headers: {
-            "x-custom-header" : "slack-cmd-endpoint"
+            "Content-Type": "application/json"
         },
         body: message
     };
