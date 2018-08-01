@@ -56,6 +56,7 @@ function send_response(url,message) {
     };
     var url_array = url.split('/');
     var hooks = concat("/commands/",url_array[url_array.length-3],"/",url_array[url_array.length-2],"/",url_array[url_array.length-1]);
+    console.log(hooks);
     // the post options
     var post_options = {
         host: 'hooks.slack.com',
