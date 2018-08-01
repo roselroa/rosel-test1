@@ -65,7 +65,7 @@ function send_response(url,message) {
         path: hooks,
         method: 'POST',
         headers: {
-            'Content-Type': 'application/application/json',
+            'Content-Type': 'application/json',
             'Content-Length': Buffer.byteLength(post_data)
         }
     };
